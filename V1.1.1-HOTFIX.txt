@@ -1,0 +1,14 @@
+Mongo Developer V1.1.1 hotfix
+
+Build failure fixed:
+  Error: No test suite found in file frontend/src/sql.node.test.mjs
+
+Cause:
+  Vitest automatically discovered the standalone node:test smoke test because its filename matched *.test.*.
+
+Fix:
+  - renamed sql.node.test.mjs -> sql.node.smoke.mjs
+  - kept src/sql.test.js as the Vitest SQL suite
+  - updated npm test:sql path
+
+The SQL tests are not removed or weakened. Vitest still runs src/sql.test.js; the standalone smoke test can also be run with npm run test:sql.
